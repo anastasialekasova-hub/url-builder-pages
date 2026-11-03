@@ -1,0 +1,13 @@
+{
+  "name": "url-builder-pages",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "e2e": "node tools/e2e/run.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.9.0"
+  }
+}
