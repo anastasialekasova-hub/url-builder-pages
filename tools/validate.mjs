@@ -12,7 +12,8 @@ for(const name of ['welcome','uninstall','feedback']){
  for(const [,ref] of html.matchAll(/(?:href|src)="([^"]+)"/g)) if(!/^https?:|^data:/.test(ref))check(existsSync(path.resolve(root,name,ref)),name+' missing '+ref);
 }
 check(!existsSync(path.join(root,'privacy')),'privacy must be on pinwisp');
-const config=readFileSync('assets/forms-config.js','utf8');check(!/formId: '[^']+'/.test(config),'build forms IDs must be blank');
+const {forms}=await import('../assets/forms-config.js');
+for(const name of ['uninstall','feedback']){const c=forms[name];check(/^1FAIp[\w-]+$/.test(c.formId)&&/^entry\.\d+$/.test(c.commentEntry)&&(name!=='uninstall'||/^entry\.\d+$/.test(c.reasonEntry)),name+' valid form config');check(/type="submit" disabled/.test(readFileSync(name+'/index.html','utf8')),name+' no-JS guard');}
 mkdirSync('tools/e2e/out',{recursive:true});
 const result={status:failures.length?'FAIL':'PASS',failures,source:Object.fromEntries(['welcome/index.html','uninstall/index.html','feedback/index.html','assets/pages.css','assets/forms.js','assets/forms-config.js','assets/icon128.png','assets/newsletter-copy.png'].map(f=>[f,sha(f)]))};
 writeFileSync('tools/e2e/out/validate.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));if(failures.length)process.exitCode=1;

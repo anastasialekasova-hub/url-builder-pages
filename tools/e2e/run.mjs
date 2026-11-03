@@ -31,7 +31,8 @@ try{
  }
  for(const name of ['uninstall','feedback']){
   await page.goto(base+'/'+name+'/',{waitUntil:'networkidle0'});
-  const unavailable=await page.evaluate(()=>({disabled:document.querySelector('button').disabled,note:document.querySelector('.form-note').textContent,required:document.querySelector('textarea').required}));assert(unavailable.disabled&&unavailable.note.includes('Nothing will be sent'),'unavailable '+name);
+  const configured=await page.evaluate(()=>({enabled:!document.querySelector('button').disabled,note:document.querySelector('.form-note').textContent}));assert(configured.enabled&&configured.note.includes('Google Forms'),'configured '+name);
+  const unavailable=await page.evaluate(async()=>{const {bindFeedback}=await import('/assets/forms.js');const f=document.querySelector('form').cloneNode(true);bindFeedback(f,{},()=>{throw Error('Unavailable transport called')});return {disabled:f.querySelector('button').disabled};});assert(unavailable.disabled,'unavailable guard '+name);
   const branches=await page.evaluate(async(name)=>{
    const {bindFeedback}=await import('/assets/forms.js');const original=document.querySelector('form');const form=original.cloneNode(true);original.replaceWith(form);
    const mock={formId:'LOCAL_TEST_ONLY',commentEntry:'entry.123',...(name==='uninstall'?{reasonEntry:'entry.456'}:{})};let mode='success',calls=[];
