@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "sourceCommit": "404fbd003ef3ce99a0af453560008b8cc524e5ea",
+  "serverSourceHashes": {
+    "welcome/index.html": "383c98120a1fc6f7739b575546a077bf88d5e926a47335f7163e40d3bee44294",
+    "uninstall/index.html": "8dfa25b585fc1f634bcfe2cb1583141af0d157315217f7fb8e6732338e2a7f5a",
+    "feedback/index.html": "1f2f07e949b2befd9547187baf065851e3aed957a3d1db8bf1bc139313c877cf",
+    "assets/pages.css": "2cf6c2b42bd7352a6640d9c97e24b7816654e0244274987b9532b35b01619d05",
+    "assets/forms.js": "b234a56dc1f639b05199d98da2fabbedafc4fa1eb32031513213d550e4a935bb",
+    "assets/forms-config.js": "029efebb43dc7255af63f88aaa7ddc1b76a7199aecb56653ae6ebd3b8852d560",
+    "assets/icon128.png": "dc254d61a065bfbfd060bd558cddb4682104b1396a8111d12712698e2d85b85a",
+    "assets/newsletter-copy.png": "158d4ca20065e6ef8934a401aa5df2744dcf5f733b3d67419110afba0721d0f6"
+  },
+  "sourceHashesMatch": true,
+  "server": {
+    "browser": "Chrome/156.0.8078.47",
+    "platform": "win32 10.0.19045",
+    "started": "2026-11-03T10:26:15.183Z",
+    "finished": "2026-11-03T10:26:28.076Z",
+    "screens": 6,
+    "forms": 2,
+    "errors": 0,
+    "failedRequests": 0,
+    "cleanup": true
+  },
+  "visualReview": {
+    "status": "PASS",
+    "reviewedScreens": [
+      "feedback-desktop.png",
+      "feedback-mobile.png",
+      "feedback-mock-failure.png",
+      "uninstall-desktop.png",
+      "uninstall-mobile.png",
+      "uninstall-mock-failure.png",
+      "welcome-desktop.png",
+      "welcome-mobile.png"
+    ],
+    "findings": [],
+    "notes": "Desktop 1280 and mobile 390; all content visible, no clipped controls or overlap; product icon and screenshot render; unavailable notes and mock failure/retained input readable."
+  },
+  "network": {
+    "realUmamiScriptHTTP": 200,
+    "realUmamiAPIHTTP": [
+      200,
+      200
+    ],
+    "dashboardPersistenceVerified": false,
+    "isolatedScreensUseExplicitAnalyticsFixture": true,
+    "realGoogleFormsRequests": 0
+  },
+  "rawFiles": {
+    "feedback-desktop.png": "5134cce5ae0dd5b901e6445662484e59f600ff0e85c35daecbdca8ecb5887d5c",
+    "feedback-mobile.png": "3d8141b12c5f9a5e722369edd31df7bfc02f6706c8cb30b5c04d02a210069180",
+    "feedback-mock-failure.png": "cd9696dc1d145b828d3f9ea9bdac3b60bc489180213dc23fd94578bc699f1de5",
+    "receipt.json": "879746a9a094dc07f63e52cc5926f7e4704a305ba3ef2328d49b291fd4b9e8a4",
+    "uninstall-desktop.png": "36f514cc75e723fcec1567099c2c2b7618d444803c5f933453a4a4b1d8f3726f",
+    "uninstall-mobile.png": "d7ae8e9a0ed2bf374090adedaa61c3856c834ea1e8c8d9a4216fdfbfdcc7a1b7",
+    "uninstall-mock-failure.png": "23d1dcd4fd90348273cd5e0146c62062b55a1a3ebb95102f667e149be1625583",
+    "welcome-desktop.png": "6fa5aff3af9e089a2871ffa295b34300e7239211252741ffe5de4c4b35785652",
+    "welcome-mobile.png": "ca290b8672c3e9f842587b7925715427aba1c6169b8fcc9945d6cf9e8ab337ce"
+  },
+  "limitations": [
+    "Forms config intentionally empty until separately authorized form stage.",
+    "No live publication or final URL/header/image response checks performed.",
+    "Umami dashboard persistence is not verified."
+  ],
+  "publicationPerformed": false
+}
