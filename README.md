@@ -24,7 +24,7 @@ Real Google Forms configuration is in assets/forms-config.js. Both forms are pub
 - Uninstall edit: https://docs.google.com/forms/d/1nr2aJUPsXmezgyD0MlsRym4Ivqmpe3iDxT2Q0ackyVM/edit — reason entry.475296943, comment entry.670259370.
 - Feedback edit: https://docs.google.com/forms/d/1NfvzFSepC4yYXdSINcZvlw63-JbAalIYxmaFzBmbcCI/edit — comment entry.1860305172, one question “What should be better?”.
 
-The canonical forms_create.py tool created these forms after a successful dry run. Anonymous viewform HTTP 200 and public entry IDs matched the API. Each setup submission was read back through the Forms API. Published-page submissions are the next check; configuration alone does not prove they work.
+The canonical forms_create.py tool created these forms after a successful dry run. Anonymous viewform HTTP 200 and public entry IDs matched the API. Each setup submission was read back through the Forms API. Published-page submissions were verified separately: each form increased from 1 to 2 API responses, and each exact test marker was read back. The uninstall response also retained the exact selected reason. The recorded settings are emailCollectionType=DO_NOT_COLLECT for both forms.
 
 ## Publication handoff
 
@@ -41,3 +41,12 @@ Server run: Windows / Node 22.14 / Chrome for Testing 156.0.8078.47, six desktop
 Raw download and visual review are complete. The recovered receipt and eight PNGs are in tools/e2e/out/server-render. All eight recorded source hashes match the local source commit 404fbd003ef3ce99a0af453560008b8cc524e5ea. All six desktop/mobile screens and both mock failure screens were visually reviewed: no clipping, overlap, missing images or unreadable status messages. Failed submissions retain the entered text and allow retry. No source changes or repeated render were required. The temporary SSH download problem is closed; no transport changes were made by this pages build.
 
 The durable QA summary and raw-file hashes are in tools/build-receipt.json. Online Umami script and two API responses were HTTP 200; dashboard persistence remains outside this build check. At BUILD time production form configuration was empty. BUILD was accepted by the orchestrator before the authorized publication. The publication checks above extend that unchanged source verification. The form stage below supersedes that initial empty configuration.
+
+
+## Live Forms verification, November 3, 2026
+
+Windows / Chrome for Testing 156.0.8078.47 loaded and reloaded both public URLs with cache disabled, verified the actual config SHA256 c003bce93a5f0682a4c8f10ac198fd164d5979c76acb7c17b3d3927eb353407f, filled the fields and clicked Send feedback once per page. Each observed request was POST with the correct entry keys and exact setup marker. API counts rose 1 → 2 for both forms, with one exact matching response per marker. These API readbacks prove storage; the UI's opaque fetch result alone does not. Chrome reported net::ERR_ABORTED on both formResponse requests despite successful API persistence; page/console errors and failed static resources were zero. This network limitation is preserved in the raw receipt rather than hidden.
+
+Both final screenshots were visually reviewed with no clipping, overlaps or missing controls. Chrome/profile cleanup completed and the runner reported EXIT 0, chromes_left=0. Full raw JSON/PNG, before/after canonical --check logs, question/settings/answer API receipt and deployment byte comparisons live in the product research/pages-forms folder. tools/e2e/form-live.mjs preserves the explicit live submission check; do not rerun it casually because it submits real setup feedback.
+
+The post-configuration mock-only regression passed on the same Windows browser: six desktop/mobile renders, both empty-config guards, required-field validation, success wording and failed transport/retry, errors 0 and failed requests 0. EXIT 0, chromes_left=0. No additional real Forms submission was made.
