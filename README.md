@@ -1,6 +1,6 @@
 # URL Builder pages
 
-Local BUILD of the approved November 3, 2026 design. No remote repository, publication or Google Forms have been created. The extension's URLs are unchanged.
+Published version of the approved November 3, 2026 design. Public repository: https://github.com/anastasialekasova-hub/url-builder-pages. GitHub Pages serves the main branch from /. Issues are enabled for contact links. The extension's URLs are unchanged. Google Forms setup follows in the separate form block.
 
 ## Pages
 
@@ -15,7 +15,7 @@ The three directories contain deployable static HTML. Shared CSS, the product ic
 
 Run `npm ci`, then `npm run validate`. A Chrome for Testing executable is required for `CHROME_PATH=/path/to/chrome npm run e2e`. Run browser tests only on the authorized test server, using the canonical remote-test helper and a separate staging directory named url-builder-pages-build. Logs, screenshots and receipts go into tools/e2e/out (ignored by git). The server script serves real directory URLs, checks desktop/mobile layout and images, records a real online Umami probe separately, and uses an explicit offline analytics fixture for isolated UI checks. Local forms tests inject a mock transport; they never send feedback to Google.
 
-There is no compilation step. To publish, deploy the welcome, uninstall, feedback and assets directories with .nojekyll after separate authorization. Do not deploy tools or package files as product pages when using a deployment artifact. No privacy page belongs in this repository.
+There is no compilation step. GitHub Pages publishes this public main branch, including .nojekyll. Product pages use the welcome, uninstall, feedback and assets directories. No privacy page belongs in this repository.
 
 ## Feedback setup pending
 
@@ -25,7 +25,7 @@ In the separately authorized form stage, use the canonical forms_create.py tool 
 
 ## Publication handoff
 
-Requires Ana's separate permission. Create a public url-builder-pages repository, enable GitHub Pages and **enable/verify Issues** for the contact links. Publish the two policy files only using pinwisp's privacy-mr.sh; do not create a GitHub privacy directory. Verify final addresses, headers, each image, Umami script on all three pages, and pinwisp deployment version. Then perform form mode and verify real submissions from the live pages. No publication command is run by this build.
+Ana authorized publication on November 3, 2026. The initial published HEAD was cdc66e485e617c328a8c7bb1bd730693303c7d30 (approved source 404fbd003ef3ce99a0af453560008b8cc524e5ea). Live checks returned HTTP 200 for all three HTML pages, shared CSS/JS, both images and Issues; all eight deployed files matched local bytes. Each HTML contains the exact common Umami ID once. Privacy publication uses pinwisp MR !81: https://gitlab.purrweb.net/serpalnik/pinwisp/-/merge_requests/81. Forms are pending and both submit buttons remain explicitly unavailable until real form configuration and API verification.
 
 The extension itself has no analytics or outbound processing requests. Umami on these three web pages is separate web analytics, using the common website ID 328e350f-b770-4529-9500-92b514123a6c. Voluntary feedback is sent to Google Forms only after setup. The approved policy explains these boundaries. The policy has no analytics script.
 
@@ -37,4 +37,4 @@ Server run: Windows / Node 22.14 / Chrome for Testing 156.0.8078.47, six desktop
 
 Raw download and visual review are complete. The recovered receipt and eight PNGs are in tools/e2e/out/server-render. All eight recorded source hashes match the local source commit 404fbd003ef3ce99a0af453560008b8cc524e5ea. All six desktop/mobile screens and both mock failure screens were visually reviewed: no clipping, overlap, missing images or unreadable status messages. Failed submissions retain the entered text and allow retry. No source changes or repeated render were required. The temporary SSH download problem is closed; no transport changes were made by this pages build.
 
-The durable QA summary and raw-file hashes are in tools/build-receipt.json. Online Umami script and two API responses were HTTP 200; dashboard persistence remains outside this build check. Production form configuration remains deliberately empty. BUILD is ready for the orchestrator's independent acceptance and the separate publication decision; no deployment, remote repository, real Forms or pinwisp MR exists from this build.
+The durable QA summary and raw-file hashes are in tools/build-receipt.json. Online Umami script and two API responses were HTTP 200; dashboard persistence remains outside this build check. Production form configuration remains deliberately empty. BUILD was accepted by the orchestrator before the authorized publication. The publication checks above extend that unchanged source verification. Real Forms are pending the next block.
